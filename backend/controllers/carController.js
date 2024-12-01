@@ -1,4 +1,4 @@
-const Car = require('../models/Car');
+const Car = require("../models/Car");
 
 // Get all cars
 exports.getAllCars = async (req, res) => {
@@ -6,7 +6,7 @@ exports.getAllCars = async (req, res) => {
     const cars = await Car.find();
     res.json(cars);
   } catch (err) {
-    res.status(500).json({ message: 'Server error', error: err.message });
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 };
 
@@ -17,7 +17,7 @@ exports.addCar = async (req, res) => {
     const car = await newCar.save();
     res.status(201).json(car);
   } catch (err) {
-    res.status(400).json({ message: 'Error adding car', error: err.message });
+    res.status(400).json({ message: "Error adding car", error: err.message });
   }
 };
 
@@ -31,7 +31,7 @@ exports.filterCars = async (req, res) => {
     const cars = await Car.find(filter);
     res.json(cars);
   } catch (err) {
-    res.status(500).json({ message: 'Server error', error: err.message });
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 };
 
@@ -39,33 +39,36 @@ exports.filterCars = async (req, res) => {
 exports.getCarById = async (req, res) => {
   try {
     const car = await Car.findById(req.params.id);
-    if (!car) return res.status(404).json({ message: 'Car not found' });
+    if (!car) return res.status(404).json({ message: "Car not found" });
     res.json(car);
   } catch (err) {
-    res.status(500).json({ message: 'Server error', error: err.message });
+    res.status(500).json({ message: "Server error", error: err.message });
   }
-// Delete a car by ID
-exports.deleteCar = async (req, res) => {
+};
+
+  // Delete a car by ID
+  exports.deleteCar = async (req, res) => {
     try {
       const car = await Car.findByIdAndDelete(req.params.id);
-      if (!car) return res.status(404).json({ message: 'Car not found' });
-      res.json({ message: 'Car deleted successfully' });
+      if (!car) return res.status(404).json({ message: "Car not found" });
+      res.json({ message: "Car deleted successfully" });
     } catch (err) {
-      res.status(500).json({ message: 'Server error', error: err.message });
+      res.status(500).json({ message: "Server error", error: err.message });
     }
   };
 
-  
-// Update a car by ID
-exports.updateCar = async (req, res) => {
+  // Update a car by ID
+  exports.updateCar = async (req, res) => {
     try {
-      const car = await Car.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-      if (!car) return res.status(404).json({ message: 'Car not found' });
+      const car = await Car.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      });
+      if (!car) return res.status(404).json({ message: "Car not found" });
       res.json(car);
     } catch (err) {
-      res.status(400).json({ message: 'Error updating car', error: err.message });
+      res
+        .status(400)
+        .json({ message: "Error updating car", error: err.message });
     }
   };
-  
-
-};
