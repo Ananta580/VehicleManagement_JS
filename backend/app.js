@@ -3,24 +3,24 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/userRoute");
-const carRoutes = require('./routes/carRoutes');
+const carRoutes = require("./routes/carRoutes");
 
 const app = express();
 
 // MongoDB connection
-const mongoURI = 'mongodb://localhost:27017/dealership';
+const mongoURI = "mongodb://localhost:27017/dealership";
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected...'))
+  .then(() => console.log("MongoDB connected..."))
   .catch((err) => console.error(err));
 
 //Middlewaress
-  app.use(express.json());
-  app.use(cors());
-  
+app.use(express.json());
+app.use(cors());
+
 // Routes
 app.use("/auth", userRoutes);
-app.use('/api/cars', carRoutes);
+app.use("/api/cars", carRoutes);
 
 // Start server
 const PORT = 5000;
