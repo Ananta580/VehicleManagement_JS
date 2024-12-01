@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const testRoutes = require("./routes/testRoute");
+const userRoutes = require("./routes/userRoute");
 
 const app = express();
 const port = process.env.PORT || 5555;
@@ -20,6 +21,7 @@ connection.once("open", () => {
 
 // Routes
 app.use("/test", testRoutes);
+app.use("/auth", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
