@@ -4,7 +4,7 @@ const {
   addCar,
   filterCars,
   getCarById
-} = require('../controller/carController');
+} = require('../controllers/carController');
 
 const router = express.Router();
 
