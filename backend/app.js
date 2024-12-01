@@ -1,5 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+
+const userRoutes = require("./routes/userRoute");
 const carRoutes = require('./routes/carRoutes');
 
 const app = express();
@@ -11,8 +14,12 @@ mongoose
   .then(() => console.log('MongoDB connected...'))
   .catch((err) => console.error(err));
 
-// Middleware
-app.use(express.json());
+//Middlewaress
+  app.use(express.json());
+  app.use(cors());
+  
+// Routes
+app.use("/auth", userRoutes);
 app.use('/api/cars', carRoutes);
 
 // Start server
