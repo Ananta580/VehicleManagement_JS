@@ -1,26 +1,20 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const testRoutes = require("./routes/testRoute");
+const express = require('express');
+const mongoose = require('mongoose');
+const carRoutes = require('./routes/carRoutes');
 
 const app = express();
-const port = process.env.PORT || 5555;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
 
 // MongoDB connection
-const uri = "mongodb://localhost:27017/vehicleDB";
-mongoose.connect(uri);
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
-});
+const mongoURI = 'mongodb://localhost:27017/dealership';
+mongoose
+  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected...'))
+  .catch((err) => console.error(err));
 
-// Routes
-app.use("/test", testRoutes);
+// Middleware
+app.use(express.json());
+app.use('/api/cars', carRoutes);
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
-});
+// Start server
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
