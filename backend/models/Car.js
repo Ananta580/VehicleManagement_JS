@@ -8,7 +8,7 @@ const carSchema = new mongoose.Schema({
   kms: { type: Number, required: true },
   vin: { type: String, required: true, unique: true },
   price: { type: Number, required: true },
-  images: [{ type: String }] // Array for up to 4 images
+  images: [{ type: String }] 
 });
 
 module.exports = mongoose.model('Car', carSchema);
