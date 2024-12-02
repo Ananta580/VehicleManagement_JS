@@ -10,7 +10,7 @@ const app = express();
 // MongoDB connection
 const mongoURI = "mongodb://localhost:27017/dealership";
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(mongoURI)
   .then(() => console.log("MongoDB connected..."))
   .catch((err) => console.error(err));
 
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.use("/auth", userRoutes);
+app.use("/api/auth", userRoutes);
 app.use("/api/cars", carRoutes);
 
 // Start server
