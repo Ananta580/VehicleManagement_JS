@@ -16,8 +16,8 @@ exports.register = async (req, res) => {
 // Login a user
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const { email, password, username } = req.body;
+    const user = await User.findOne({ $or: [{ email }, { username }] });
     if (!user) {
       return res.status(400).send({ error: "Invalid email or password" });
     }
