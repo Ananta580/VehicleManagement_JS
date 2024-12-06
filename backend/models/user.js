@@ -18,6 +18,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  address: {
+    type: String,
+    trim: true,
+  },
+  phone: {
+    type: String,
+    trim: true,
+  },
 });
 
 // Hash the password before saving the user model
