@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ onLogout }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    if (onLogout) {
+      onLogout(); // Call the logout function passed from App.js
+    }
+    navigate("/login"); // Redirect to login page
+  };
+
   return (
     <div className="bg-white shadow-md px-8 py-4 flex justify-between items-center w-full fixed top-0 z-50">
       <h1 className="text-2xl font-bold text-blue-600">
@@ -42,6 +51,13 @@ const Navbar = () => {
             Search
           </button>
         </div>
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="text-white bg-red-600 px-4 py-2 rounded-md hover:bg-red-700 transition duration-300"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

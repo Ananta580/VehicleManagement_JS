@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs"; // Import the AboutUs component
 import ContactUs from "./pages/ContactUs"; // Import the ContactUs component
+import Navbar from "./components/Navbar"; // Import the Navbar component
 
 function App() {
   const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
@@ -20,8 +21,15 @@ function App() {
     localStorage.setItem("authToken", token);
   };
 
+  const handleLogout = () => {
+    setAuthToken(null);
+    localStorage.removeItem("authToken");
+  };
+
   return (
     <Router>
+      {/* Render Navbar only when the user is logged in */}
+      {authToken && <Navbar onLogout={handleLogout} />}
       <Routes>
         {/* Login Route */}
         <Route
