@@ -1,14 +1,37 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="bg-white shadow-md px-8 py-4 flex justify-between items-center">
-      <h1 className="text-2xl font-bold text-blue-600">iAuto</h1>
+    <div className="bg-white shadow-md px-8 py-4 flex justify-between items-center w-full fixed top-0 z-50">
+      <h1 className="text-2xl font-bold text-blue-600">
+        <Link to="/">iAuto</Link>
+      </h1>
       <div className="flex items-center space-x-6">
-        <button className="text-blue-600 font-semibold hover:text-sky-700">Home</button>
-        <button className="text-blue-600 font-semibold hover:text-sky-700">About Us</button>
-        <button className="text-blue-600 font-semibold hover:text-sky-700">Contact us</button>
-        <button className="text-blue-600 font-semibold hover:text-sky-700">Gallery</button>
+        <Link
+          to="/home"
+          className="text-blue-600 font-semibold hover:text-sky-700"
+        >
+          Home
+        </Link>
+        <Link
+          to="/about"
+          className="text-blue-600 font-semibold hover:text-sky-700"
+        >
+          About Us
+        </Link>
+        <Link
+          to="/contact"
+          className="text-blue-600 font-semibold hover:text-sky-700"
+        >
+          Contact Us
+        </Link>
+        <Link
+          to="/gallery"
+          className="text-blue-600 font-semibold hover:text-sky-700"
+        >
+          Gallery
+        </Link>
         <div className="relative">
           <input
             type="text"
