@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+
 const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -10,17 +11,17 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5500/auth/login", {
+      const response = await fetch("http://localhost:5000/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
 
       if (response.ok) {
-        onLogin(data.token);
+        onLogin(data.token, email);
         navigate("/");
       } else {
         setError(data.error || "Login failed");
@@ -34,17 +35,17 @@ const Login = ({ onLogin }) => {
     <div className="min-h-screen bg-gradient-to-tr flex justify-center items-center">
       <div className="flex gap-5">
         <div className="w-1/2 flex justify-center">
-          <img src="./login.svg" alt="register" className="w-4/5 h-full" />
+          <img src="./login.svg" alt="login" className="w-4/5 h-full" />
         </div>
         <div className="w-1/2 flex justify-center">
           <form onSubmit={handleSubmit} className="p-6 rounded-md w-3/4">
             <h2 className="text-2xl font-bold mb-4">Login</h2>
             {error && <div className="text-red-500 mb-2">{error}</div>}
             <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
               className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
             />
             <input
