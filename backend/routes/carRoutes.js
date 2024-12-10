@@ -3,7 +3,9 @@ const {
   getAllCars,
   addCar,
   filterCars,
-  getCarById
+  getCarById,
+  deleteCar,
+  updateCar
 } = require('../controllers/carController');
 
 const router = express.Router();
@@ -19,5 +21,11 @@ router.get('/filter', filterCars);
 
 // Get a car by ID
 router.get('/:id', getCarById);
+
+// Update a car by ID
+router.put('/:id', updateCar);
+
+// Delete a car by ID
+router.delete('/:id', deleteCar);
 
 module.exports = router;

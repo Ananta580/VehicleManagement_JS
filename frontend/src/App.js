@@ -1,37 +1,59 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Navbar from './components/Navbar'; 
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Home from './pages/Home';
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import AboutUs from "./pages/AboutUs"; // Import the AboutUs component
+import ContactUs from "./pages/ContactUs"; // Import the ContactUs component
+import Navbar from "./components/Navbar"; // Import the Navbar component
 
 function App() {
   const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
-  const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail")); // Save user email
 
-  const handleLogin = (token, email) => {
+  const handleLogin = (token) => {
     setAuthToken(token);
     setUserEmail(email); // Save email on login
     localStorage.setItem("authToken", token);
-    localStorage.setItem("userEmail", email); // Save email in localStorage
+  };
+
+  const handleLogout = () => {
+    setAuthToken(null);
+    localStorage.removeItem("authToken");
   };
 
   return (
     <Router>
+      {/* Render Navbar only when the user is logged in */}
+      {authToken && <Navbar onLogout={handleLogout} />}
       <Routes>
+        {/* Login Route */}
         <Route
           path="/login"
-          element={authToken ? <Navigate to="/home" /> : <Login onLogin={handleLogin} />}
+          element={
+            authToken ? (
+              <Navigate to="/home" />
+            ) : (
+              <Login onLogin={handleLogin} />
+            )
+          }
         />
+
+        {/* Register Route */}
         <Route path="/register" element={<Register />} />
+
+        {/* Default Route */}
         <Route
           path="/"
           element={authToken ? <Navigate to="/home" /> : <Navigate to="/login" />}
         />
-        <Route 
-          path="/home" 
-          element={<Home userEmail={userEmail} />}  // Pass userEmail to Home
-        />
+
+        {/* Home Route */}
+        <Route path="/home" element={<Home />} />
+
+        {/* About Us Route */}
+        <Route path="/about" element={<AboutUs />} />
+
+        {/* Contact Us Route */}
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
     </Router>
   );
