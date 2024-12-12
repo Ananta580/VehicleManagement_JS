@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs"; 
 import ContactUs from "./pages/ContactUs"; 
 import Navbar from "./components/Navbar"; 
+import CarDetails from "./pages/CarDetails";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
 
         {/* Contact Us Route */}
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/car/:id" element={<CarDetails />}/>
       </Routes>
     </Router>
   );
