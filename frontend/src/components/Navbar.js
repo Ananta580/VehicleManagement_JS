@@ -9,7 +9,7 @@ const Navbar = ({ onLogout }) => {
       onLogout(); // Call the logout function passed from App.js
     }
     navigate("/login"); // Redirect to login page
-  };
+  }
 
   return (
     <div className="bg-white shadow-md px-8 py-4 flex justify-between items-center w-full fixed top-0 z-50">
