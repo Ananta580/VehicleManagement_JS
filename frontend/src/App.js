@@ -1,27 +1,37 @@
 import React, { useState } from "react";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
-import AboutUs from "./pages/AboutUs"; 
-import ContactUs from "./pages/ContactUs"; 
-import Navbar from "./components/Navbar"; 
-import CarDetails from "./pages/CarDetails";
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import AboutUs from "./pages/miscellaneous/AboutUs";
+import ContactUs from "./pages/miscellaneous/ContactUs";
+import AddCarForm from "./pages/cars/AddCarForm";
+
+import Navbar from "./components/Navbar";
+import CarDetails from "./pages/cars/CarDetails";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
   const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
-  const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail") || '');
+  const [userEmail, setUserEmail] = useState(
+    localStorage.getItem("userEmail") || ""
+  );
 
   const handleLogin = (token, email) => {
     setAuthToken(token);
-    setUserEmail(email); // Save email on login
+    setUserEmail(email);
     localStorage.setItem("authToken", token);
     localStorage.setItem("userEmail", email);
   };
 
   const handleLogout = () => {
+    console.log("Logging out from App js...");
     setAuthToken(null);
-    setUserEmail('');
+    setUserEmail("");
     localStorage.removeItem("authToken");
     localStorage.removeItem("userEmail");
   };
@@ -31,7 +41,6 @@ function App() {
       {/* Render Navbar only when the user is logged in */}
       {authToken && <Navbar userEmail={userEmail} onLogout={handleLogout} />}
       <Routes>
-        {/* Login Route */}
         <Route
           path="/login"
           element={
@@ -42,25 +51,25 @@ function App() {
             )
           }
         />
-
-        {/* Register Route */}
         <Route path="/register" element={<Register />} />
-
-        {/* Default Route */}
         <Route
           path="/"
-          element={authToken ? <Navigate to="/home" /> : <Navigate to="/login" />}
+          element={
+            authToken ? <Navigate to="/home" /> : <Navigate to="/login" />
+          }
         />
-
-        {/* Home Route */}
-        <Route path="/home" element={<Home />} />
-
-        {/* About Us Route */}
-        <Route path="/about" element={<AboutUs />} />
-
-        {/* Contact Us Route */}
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/car/:id" element={<CarDetails />}/>
+        {authToken ? (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/car/add" element={<AddCarForm />} />
+            <Route path="/car/edit/:id" element={<AddCarForm />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/car/:id" element={<CarDetails />} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/login" />} />
+        )}
       </Routes>
     </Router>
   );

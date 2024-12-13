@@ -25,8 +25,8 @@ exports.login = async (req, res) => {
     if (!isMatch) {
       return res.status(400).send({ error: "Invalid email or password" });
     }
-    const token = jwt.sign({ _id: user._id }, "your_jwt_secret", {
-      expiresIn: "1h",
+    const token = jwt.sign({ _id: user._id }, "DealerShipSecretKey", {
+      expiresIn: "30 days",
     });
     res.send({ token });
   } catch (error) {
