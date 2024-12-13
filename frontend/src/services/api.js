@@ -2,6 +2,23 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:5500/api";
 
+const api = axios.create({
+  baseURL: BASE_URL,
+});
+
+api.interceptors.request.use(
+  (config) => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken && !config.url.includes("/auth/")) {
+      config.headers.Authorization = `Bearer ${authToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export const getCars = async (filters) => {
   try {
     const { price, kms } = filters;
@@ -10,7 +27,7 @@ export const getCars = async (filters) => {
     if (price) filterParams.price = price;
     if (kms) filterParams.kms = kms;
 
-    const response = await axios.get(`${BASE_URL}/cars`, {
+    const response = await api.get("/cars", {
       params: filterParams,
     });
     return response.data;
@@ -22,7 +39,7 @@ export const getCars = async (filters) => {
 
 export const getCarById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/cars/${id}`);
+    const response = await api.get(`/cars/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching car by ID:", error);
@@ -52,7 +69,7 @@ export const loginUser = async (loginData) => {
 
 export const addCar = async (carData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/cars`, carData);
+    const response = await api.post("/cars", carData);
     return response.data;
   } catch (error) {
     console.error("Error adding car:", error);
@@ -62,7 +79,7 @@ export const addCar = async (carData) => {
 
 export const updateCar = async (id, carData) => {
   try {
-    const response = await axios.put(`${BASE_URL}/cars/${id}`, carData);
+    const response = await api.put(`/cars/${id}`, carData);
     return response.data;
   } catch (error) {
     console.error("Error updating car:", error);
