@@ -56,7 +56,7 @@ const CarList = () => {
               />
             ))}
           </div>
-          {paginatedCars.length > carsPerPage && (
+          {filteredCars.length > carsPerPage && (
             <div className="flex justify-center items-center my-8 space-x-4">
               <button
                 disabled={currentPage === 1}

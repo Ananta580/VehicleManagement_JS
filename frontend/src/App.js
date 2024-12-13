@@ -58,12 +58,18 @@ function App() {
             authToken ? <Navigate to="/home" /> : <Navigate to="/login" />
           }
         />
-        <Route path="/home" element={<Home />} />
-        <Route path="/car/add" element={<AddCarForm />} />
-        <Route path="/car/edit/:id" element={<AddCarForm />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/car/:id" element={<CarDetails />} />
+        {authToken ? (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/car/add" element={<AddCarForm />} />
+            <Route path="/car/edit/:id" element={<AddCarForm />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/car/:id" element={<CarDetails />} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/login" />} />
+        )}
       </Routes>
     </Router>
   );

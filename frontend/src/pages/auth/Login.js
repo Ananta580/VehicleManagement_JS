@@ -28,7 +28,7 @@ const Login = ({ onLogin }) => {
   return (
     <div className="min-h-screen bg-gradient-to-tr flex justify-center items-center">
       <div className="flex gap-5">
-        <div className="w-1/2 flex justify-center">
+        <div className="w-1/2 flex items-center flex-col gap-5 justify-center">
           <img src="./login.svg" alt="login" className="w-4/5 h-full" />
         </div>
         <div className="w-1/2 flex justify-center">
