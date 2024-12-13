@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { loginUser } from "../../services/api";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -11,20 +12,13 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
+      const data = await loginUser({ email, password });
 
-      if (response.ok) {
+      if (data) {
         onLogin(data.token, email);
         navigate("/");
       } else {
-        setError(data.error || "Login failed");
+        setError("Login failed");
       }
     } catch (err) {
       setError("Something went wrong!");

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar"; // Adjust the path based on your directory structure
+import Navbar from "../../components/Navbar"; // Adjust the path based on your directory structure
 
 const ContactUs = () => {
   return (
@@ -13,7 +13,8 @@ const ContactUs = () => {
         <div className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-20 px-6 text-center">
           <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
           <p className="text-lg max-w-3xl mx-auto">
-            Have questions, feedback, or need assistance? We're here to help. Reach out to us using the form below or find us at our location.
+            Have questions, feedback, or need assistance? We're here to help.
+            Reach out to us using the form below or find us at our location.
           </p>
         </div>
 
@@ -26,7 +27,10 @@ const ContactUs = () => {
             <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Full Name
                 </label>
                 <input
@@ -39,7 +43,10 @@ const ContactUs = () => {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Email Address
                 </label>
                 <input
@@ -52,7 +59,10 @@ const ContactUs = () => {
 
               {/* Subject */}
               <div className="md:col-span-2">
-                <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Subject
                 </label>
                 <input
@@ -65,7 +75,10 @@ const ContactUs = () => {
 
               {/* Message */}
               <div className="md:col-span-2">
-                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-gray-700 font-medium mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -96,7 +109,8 @@ const ContactUs = () => {
               Visit Us
             </h2>
             <p className="text-gray-600 mb-8">
-              Find us at our office or drop by for a chat. We’d love to hear from you!
+              Find us at our office or drop by for a chat. We’d love to hear
+              from you!
             </p>
             <div className="w-full h-96 bg-gray-300 rounded-lg shadow-md">
               {/* Replace this with a Google Maps Embed */}
@@ -114,7 +128,8 @@ const ContactUs = () => {
         {/* Footer */}
         <div className="bg-gray-800 text-white py-6 w-full">
           <p className="text-center">
-            © {new Date().getFullYear()} Car Management Platform. All rights reserved.
+            © {new Date().getFullYear()} Car Management Platform. All rights
+            reserved.
           </p>
         </div>
       </div>

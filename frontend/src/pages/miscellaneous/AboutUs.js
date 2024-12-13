@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar"; // Adjust this path if your Navbar file is in a different directory
+import Navbar from "../../components/Navbar"; // Adjust this path if your Navbar file is in a different directory
 
 const AboutUs = () => {
   return (
@@ -47,7 +47,9 @@ const AboutUs = () => {
                   alt="Team Member"
                   className="w-24 h-24 mx-auto rounded-full mb-4"
                 />
-                <h3 className="text-xl font-medium text-gray-700">Bibek Shrestha</h3>
+                <h3 className="text-xl font-medium text-gray-700">
+                  Bibek Shrestha
+                </h3>
                 <p className="text-gray-500">Lead Developer</p>
               </div>
               {/* Another Team Member */}
@@ -57,7 +59,9 @@ const AboutUs = () => {
                   alt="Team Member"
                   className="w-24 h-24 mx-auto rounded-full mb-4"
                 />
-                <h3 className="text-xl font-medium text-gray-700">Subash Pariyar</h3>
+                <h3 className="text-xl font-medium text-gray-700">
+                  Subash Pariyar
+                </h3>
                 <p className="text-gray-500">UI/UX Designer</p>
               </div>
               {/* Another Team Member */}

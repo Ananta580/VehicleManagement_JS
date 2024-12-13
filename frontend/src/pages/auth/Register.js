@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { registerUser } from "../../services/api";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -8,7 +9,7 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccees] = useState("");
+  const [success, setSuccess] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,22 +21,17 @@ const Register = () => {
       return;
     }
 
-    const response = await fetch("http://localhost:5000/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, email, address, phone, password }),
-    });
-    const data = await response.json();
-    if (response.ok) {
+    const userData = { username, email, address, phone, password };
+    const data = await registerUser(userData);
+
+    if (data) {
       setError("");
-      setSuccees(data.message);
+      setSuccess(data.message);
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } else {
-      setError(data.error || "Registration failed");
+      setError("Registration failed");
     }
   };
 
