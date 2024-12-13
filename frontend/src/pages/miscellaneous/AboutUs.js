@@ -1,49 +1,32 @@
 import React from "react";
-import Navbar from "../../components/Navbar"; // Adjust this path if your Navbar file is in a different directory
+import Hero from "../../components/Hero";
 
 const AboutUs = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
-      {/* Navbar */}
-      <Navbar />
-
-      {/* Main Content */}
-      <div className="mt-20 flex flex-col items-center">
-        {/* Hero Section */}
-        <div className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-20 px-6 text-center">
-          <h1 className="text-4xl font-bold mb-4">About Us</h1>
-          <p className="text-lg max-w-3xl mx-auto">
-            Welcome to our Cars Management Platform, where innovation meets
-            reliability. Explore our journey, vision, and the people behind the
-            scenes.
-          </p>
-        </div>
-
-        {/* Mission Section */}
-        <div className="py-16 px-6 bg-white w-full">
+    <div className="">
+      <Hero title={"About Us"} subtitle={"Know about our team and mission"} />
+      <div className=" flex flex-col items-center">
+        <div className="py-16 px-6 w-full">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-semibold mb-4 text-gray-800">
               Our Mission
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-xl">
               To create a seamless and user-friendly car management experience,
               empowering our users to efficiently manage their automotive data
               while driving innovation in the industry.
             </p>
           </div>
         </div>
-
-        {/* Team Section */}
-        <div className="py-16 px-6 bg-gray-100 w-full">
+        <div className="py-24 px-6 w-full">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-8 text-center text-gray-800">
-              Meet Our Team
+            <h2 className="text-3xl font-semibold mb-5 text-center text-gray-800">
+              Our Team
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Team Member */}
-              <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="bg-white p-6 rounded-lg text-center">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src="https://api.dicebear.com/9.x/identicon/svg?seed=Leo"
                   alt="Team Member"
                   className="w-24 h-24 mx-auto rounded-full mb-4"
                 />
@@ -52,22 +35,20 @@ const AboutUs = () => {
                 </h3>
                 <p className="text-gray-500">Lead Developer</p>
               </div>
-              {/* Another Team Member */}
-              <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+              <div className="bg-white p-6  rounded-lg text-center">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src="https://api.dicebear.com/9.x/identicon/svg?seed=Ryan"
                   alt="Team Member"
                   className="w-24 h-24 mx-auto rounded-full mb-4"
                 />
                 <h3 className="text-xl font-medium text-gray-700">
                   Subash Pariyar
                 </h3>
-                <p className="text-gray-500">UI/UX Designer</p>
+                <p className="text-gray-500">Software Developer</p>
               </div>
-              {/* Another Team Member */}
-              <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+              <div className="bg-white p-6 rounded-lg text-center">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src="https://api.dicebear.com/9.x/identicon/svg?seed=Aidan"
                   alt="Team Member"
                   className="w-24 h-24 mx-auto rounded-full mb-4"
                 />
@@ -76,11 +57,20 @@ const AboutUs = () => {
                 </h3>
                 <p className="text-gray-500">Product Manager</p>
               </div>
+              <div className="bg-white p-6 rounded-lg text-center">
+                <img
+                  src="https://api.dicebear.com/9.x/identicon/svg?seed=Amaya"
+                  alt="Team Member"
+                  className="w-24 h-24 mx-auto rounded-full mb-4"
+                />
+                <h3 className="text-xl font-medium text-gray-700">
+                  Bikash Sapkota
+                </h3>
+                <p className="text-gray-500">UI/UX Designer</p>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Vision Section */}
         <div className="py-16 px-6 bg-indigo-600 text-white w-full">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-semibold mb-4">Our Vision</h2>
@@ -89,14 +79,6 @@ const AboutUs = () => {
               smarter and more connected automotive future.
             </p>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="bg-gray-800 text-white py-6 w-full">
-          <p className="text-center">
-            © {new Date().getFullYear()} Car Management Platform. All rights
-            reserved.
-          </p>
         </div>
       </div>
     </div>

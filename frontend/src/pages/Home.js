@@ -4,8 +4,11 @@ import CarList from "../components/CarList";
 
 const Home = () => {
   return (
-    <div className="bg-gray-100">
-      <Hero />
+    <div>
+      <Hero
+        title={"Explore Our Cars"}
+        subtitle={"Best Car Dealership in Canada"}
+      />
       <CarList />
     </div>
   );

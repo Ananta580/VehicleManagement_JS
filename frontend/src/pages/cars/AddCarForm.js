@@ -6,12 +6,14 @@ const AddCarForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [car, setCar] = useState({
+    name: "",
     model: "",
     year: "",
     color: "",
     kms: "",
     vin: "",
     price: "",
+    description: "",
     images: [],
   });
 
@@ -66,10 +68,12 @@ const AddCarForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
+      !car.name ||
       !car.model ||
       !car.year ||
       !car.price ||
       !car.vin ||
+      !car.description ||
       car.images.length === 0
     ) {
       setError("Please fill in all required fields.");
@@ -96,6 +100,15 @@ const AddCarForm = () => {
           </h2>
           {error && <div className="text-red-500 mb-2">{error}</div>}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="name"
+              value={car.name}
+              onChange={handleChange}
+              placeholder="Name"
+              className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
+              required
+            />
             <input
               type="text"
               name="model"
@@ -147,6 +160,14 @@ const AddCarForm = () => {
               value={car.price}
               onChange={handleChange}
               placeholder="Price"
+              className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
+              required
+            />
+            <textarea
+              name="description"
+              value={car.description}
+              onChange={handleChange}
+              placeholder="Description"
               className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
               required
             />

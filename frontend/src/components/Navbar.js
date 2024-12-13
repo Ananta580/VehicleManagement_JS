@@ -12,8 +12,11 @@ const Navbar = ({ userEmail, onLogout }) => {
 
   return (
     <div className="bg-gradient-to-r from-indigo-700 via-indigo-600 to-indigo-800 shadow-md px-8 py-4 flex justify-between items-center w-full fixed top-0 z-50">
-      <h1 className="text-2xl font-bold text-white">
-        <Link to="/">iAuto</Link>
+      <h1 className="text-xl font-bold text-white">
+        <Link className="flex gap-2 items-center text-xl" to="/">
+          <img src="/logo.svg" alt="logo" className="w-10 h-10" />
+          iAuto
+        </Link>
       </h1>
       <div className="flex items-center space-x-6 text-gray-200">
         <Link to="/home" className="hover:text-white">

@@ -1,29 +1,24 @@
-import React from "react";
-import Navbar from "../../components/Navbar"; // Adjust the path based on your directory structure
+import React, { useState } from "react";
+import Hero from "../../components/Hero";
 
 const ContactUs = () => {
-  return (
-    <div className="bg-gray-100 min-h-screen">
-      {/* Navbar */}
-      <Navbar />
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
 
+  return (
+    <div className="">
       {/* Main Content */}
-      <div className="mt-20 flex flex-col items-center">
-        {/* Hero Section */}
-        <div className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-20 px-6 text-center">
-          <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-          <p className="text-lg max-w-3xl mx-auto">
-            Have questions, feedback, or need assistance? We're here to help.
-            Reach out to us using the form below or find us at our location.
-          </p>
-        </div>
+      <div className="flex flex-col items-center">
+        <Hero
+          title="Contact Us"
+          subtitle="Have questions, feedback, or need assistance? We're here to help. Reach out to us using the form below or find us at our location."
+        />
 
         {/* Contact Form Section */}
-        <div className="py-16 px-6 bg-white w-full">
+        <div className="py-16 px-6 w-full">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-8 text-center text-gray-800">
-              Get in Touch
-            </h2>
             <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Name */}
               <div>
@@ -35,9 +30,10 @@ const ContactUs = () => {
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
                 />
               </div>
 
@@ -51,9 +47,10 @@ const ContactUs = () => {
                 </label>
                 <input
                   type="email"
-                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
                 />
               </div>
 
@@ -67,9 +64,10 @@ const ContactUs = () => {
                 </label>
                 <input
                   type="text"
-                  id="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   placeholder="Enter the subject"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
                 />
               </div>
 
@@ -82,10 +80,11 @@ const ContactUs = () => {
                   Message
                 </label>
                 <textarea
-                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   rows="6"
                   placeholder="Write your message here"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full p-2 mb-4 border outline-none focus:ring-2 focus:ring-indigo-700"
                 ></textarea>
               </div>
 
@@ -93,7 +92,7 @@ const ContactUs = () => {
               <div className="md:col-span-2 text-center">
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-sky-700 transition duration-300"
+                  className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300"
                 >
                   Send Message
                 </button>
@@ -103,7 +102,7 @@ const ContactUs = () => {
         </div>
 
         {/* Location Section */}
-        <div className="py-16 px-6 bg-gray-100 w-full">
+        <div className="py-16 px-6 w-full">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-semibold mb-4 text-gray-800">
               Visit Us
@@ -123,14 +122,6 @@ const ContactUs = () => {
               ></iframe>
             </div>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="bg-gray-800 text-white py-6 w-full">
-          <p className="text-center">
-            © {new Date().getFullYear()} Car Management Platform. All rights
-            reserved.
-          </p>
         </div>
       </div>
     </div>
