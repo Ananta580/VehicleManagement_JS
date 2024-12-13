@@ -3,14 +3,12 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import CarList from "../components/CarList";
 
-const Home = () => {
+const Home = ({ userEmail }) => {
   return (
     <div className="bg-gray-100">
-      
-      <Navbar />
+      <Navbar userEmail={userEmail} />  {/* Pass userEmail to Navbar */}
       <Hero />
       <CarList />
-    
     </div>
   );
 };

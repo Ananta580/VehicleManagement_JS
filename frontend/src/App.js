@@ -1,35 +1,35 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-
 import React, { useState } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import AboutUs from "./pages/AboutUs"; // Import the AboutUs component
-import ContactUs from "./pages/ContactUs"; // Import the ContactUs component
-import Navbar from "./components/Navbar"; // Import the Navbar component
+import AboutUs from "./pages/AboutUs"; 
+import ContactUs from "./pages/ContactUs"; 
+import Navbar from "./components/Navbar"; 
+import CarDetails from "./pages/CarDetails";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
   const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
+  const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail") || '');
 
-  const handleLogin = (token) => {
+  const handleLogin = (token, email) => {
     setAuthToken(token);
+    setUserEmail(email); // Save email on login
     localStorage.setItem("authToken", token);
+    localStorage.setItem("userEmail", email);
   };
 
   const handleLogout = () => {
     setAuthToken(null);
+    setUserEmail('');
     localStorage.removeItem("authToken");
+    localStorage.removeItem("userEmail");
   };
 
   return (
     <Router>
       {/* Render Navbar only when the user is logged in */}
-      {authToken && <Navbar onLogout={handleLogout} />}
+      {authToken && <Navbar userEmail={userEmail} onLogout={handleLogout} />}
       <Routes>
         {/* Login Route */}
         <Route
@@ -49,9 +49,7 @@ function App() {
         {/* Default Route */}
         <Route
           path="/"
-          element={
-            authToken ? <Navigate to="/home" /> : <Navigate to="/login" />
-          }
+          element={authToken ? <Navigate to="/home" /> : <Navigate to="/login" />}
         />
 
         {/* Home Route */}
@@ -62,6 +60,7 @@ function App() {
 
         {/* Contact Us Route */}
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/car/:id" element={<CarDetails />}/>
       </Routes>
     </Router>
   );

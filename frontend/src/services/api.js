@@ -53,3 +53,13 @@ export const loginUser = async (loginData) => {
     return null;
   }
 };
+// Add a new car
+export const addCar = async (carData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/cars`, carData);
+    return response.data;
+  } catch (error) {
+    console.error("Error adding car:", error);
+    throw new Error('Error adding car details');
+  }
+};
